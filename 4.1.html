@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <title>Week 4</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1>Contact Us</h1>
+
+            <form id="contactForm" onsubmit="return validateForm()">
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" required>
+                        <span id="nameError" class="error"></span>
+                        <br><br>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                        <span id="emailError" class="error"></span>
+                        <br><br>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="message">Message:</label>
+                        <input type="message" id="message" required>
+                        <span id="messageError" class="error"></span>
+                        <br><br>
+                    </div>
+                </div>
+
+                <div class="btn-field">
+                    <button type="Submit">Submit</button>
+                </div>
+
+
+
+            </form>
+
+            <script>
+                function validateForm() {
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+
+                    const nameError = document.getElementById('nameError');
+                    const emailError = document.getElementById('emailError');
+                    const messageError = document.getElementById('messageError');
+
+                    //reseting previous error message
+                    nameError.textContent = "";
+                    emailError.textContent = "";
+                    messageError.textContent = "";
+
+                    let isValid = true;
+
+                    //Name validation
+                    if (!name.trim()) {
+                        nameError.textContent = "Name is required";
+                        isValid = false;
+                    }
+
+                    //Email validation
+                    if (!email.trim()) {
+                        emailError.textContent = "Email is required";
+                        isValid = false;
+                    } else if (!isValidEmail(email)) {
+                        emailError.textContent = "Invalid email format";
+                    }
+
+                    //Message validation
+                    if (!message.trim()) {
+                        nameError.textContent = "Message is required";
+                        isValid = false;
+                    }
+
+                    return isValid;
+                }
+
+                function isValidEmail(email) {
+                    //Basic email format validation using regex
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return emailPattern.test(email);
+                }
+
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
